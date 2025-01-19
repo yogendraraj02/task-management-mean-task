@@ -1,6 +1,5 @@
-Here's the updated README file, including the Angular setup and a section for the server setup:  
 
-```markdown
+
 # Task Management (MEAN Stack) Setup
 
 This document provides steps to set up and run the **Task Management** project locally, which is built using the MEAN stack (MongoDB, Express, Angular, Node.js).

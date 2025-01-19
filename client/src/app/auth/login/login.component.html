@@ -1,0 +1,84 @@
+<div class="auth-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" 
+        [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors, 'is-valid':  f['email'].valid}" >
+        
+        <mat-error *ngIf="loginForm.get('email')?.touched &&  loginForm.get('email')?.errors?.['required']"
+        >Email is required</mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email</mat-error>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password">
+        <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">Password is required</mat-error>
+      </div>
+      <!-- <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        -->
+
+        <div class="button-container">
+            <button class="btn btn-sm btn-primary w-100" [disabled]="loading">
+              {{ loading ? 'Loading...' : 'Login' }}
+            </button>
+            
+          </div>
+          <div class="button-container">
+            
+            <a class="link" routerLink="/register">Register</a>
+          </div>
+        
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+        
+    </form>
+    <div class="guest-credentials">
+        <h4>Guest Credentials</h4>
+        <p>Username: {{guestCredentials.email}}</p>
+        <p>Password: {{guestCredentials.password}}</p>
+      </div>
+</div>
+  
+
+<!-- <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-control">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="username" type="email">
+            <mat-error *ngIf="loginForm.get('username')?.errors?.['required']">Email is required</mat-error>
+            <mat-error *ngIf="loginForm.get('username')?.errors?.['email']">Enter a valid email</mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="button-container">
+          <button mat-raised-button color="primary" [disabled]="loading">
+            {{ loading ? 'Loading...' : 'Login' }}
+          </button>
+          <button mat-button type="button" routerLink="/register">Register</button>
+        </div>
+  
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      </form>
+  
+      <div class="guest-credentials">
+        <h4>Guest Credentials</h4>
+        <p>Username: {{guestCredentials.username}}</p>
+        <p>Password: {{guestCredentials.password}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card> -->

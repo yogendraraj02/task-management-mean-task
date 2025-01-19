@@ -1,0 +1,116 @@
+<div class="row">
+    <!-- Team Leaders Table -->
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="text-center font-weight-bold">Team Leaders</h5>
+        </div>
+        <div class="card-body">
+          <div class="action-row mb-3 d-flex justify-content-between">
+            <!-- <div class="search-container">
+              <label for="leaders-search" class="form-label me-2">Search:</label>
+              <input
+                id="leaders-search"
+                type="text"
+                class="form-control"
+                [(ngModel)]="searchLeaders"
+                (ngModelChange)="filterLeaders()"
+              />
+            </div> -->
+          </div>
+          <table class="table table-striped table-md">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leader of pageOfLeaders; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ leader.username }}</td>
+                <td>{{ leader.email }}</td>
+                <td>
+                  <!-- <i
+                    class="bi bi-trash-fill text-danger"
+                    (click)="deleteLeader(leader.id)"
+                  ></i> -->
+                </td>
+              </tr>
+              <tr *ngIf="loadingLeaders">
+                <td colspan="4" class="text-center py-5">
+                  <span class="spinner-border spinner-border-lg"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+          <pagination
+            [items]="teamLeaders"
+            (changePage)="onChangeLeadersPage($event)"
+          ></pagination>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Employees Table -->
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="text-center font-weight-bold">Employees</h5>
+        </div>
+        <div class="card-body">
+          <div class="action-row mb-3 d-flex justify-content-between">
+            <!-- <div class="search-container">
+              <label for="employees-search" class="form-label me-2">Search:</label>
+              <input
+                id="employees-search"
+                type="text"
+                class="form-control"
+                [(ngModel)]="searchEmployees"
+                (ngModelChange)="filterEmployees()"
+              />
+            </div> -->
+          </div>
+          <table class="table table-striped table-md">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of pageOfEmployees; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ employee.username }}</td>
+                <td>{{ employee.email }}</td>
+                <td>
+                  <!-- <i
+                    class="bi bi-trash-fill text-danger"
+                    (click)="deleteEmployee(employee.id)"
+                  ></i> -->
+                </td>
+              </tr>
+              <tr *ngIf="loadingEmployees">
+                <td colspan="4" class="text-center py-5">
+                  <span class="spinner-border spinner-border-lg"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+          <pagination
+            [items]="employees"
+            (changePage)="onChangeEmployeesPage($event)"
+          ></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,41 @@
+<div class="main-wraper">
+  <div class="inner-wrapper">
+    <div class="head-search-row comm-head">
+      <h2 class="card_row-head">
+        {{ taskType === 'create' ? 'Create New Task' : 'Edit Task' }}
+      </h2>
+    </div>
+    <div class="cm-pad-wrap">
+      <div class="row">
+        <form class="col-md-6" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+          <div class="form-group w-100">
+            <label>Title <span class="star_red">*</span></label>
+            <input type="text" class="form-control" placeholder="Enter title" formControlName="title" />
+            <div *ngIf="f.title.touched && f.title.errors" class="invalid-feedback">
+              <div >Title is required</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Description <span class="star_red">*</span></label>
+            <textarea class="form-control" placeholder="Enter description" formControlName="description"></textarea>
+            <div *ngIf="f.description.touched && f.description.errors" class="invalid-feedback">
+              <div [hidden]="!f.description.errors['required']">Description is required</div>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="taskType === 'edit'">
+            <label>Status <span class="star_red">*</span></label>
+            <select class="form-control" formControlName="status">
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <button class="blu-btn btn-inline" type="submit">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

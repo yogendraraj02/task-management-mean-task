@@ -1,0 +1,12 @@
+.main-wraper {
+  width: calc(100% - 260px);
+  background: var(--main-bg);
+  /* change by yr */
+  position: relative;
+ 
+}
+
+.main-wraper .register-form {
+ 
+}
+

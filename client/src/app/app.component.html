@@ -1,0 +1,32 @@
+<div class="app-container">
+    <!-- Global Navbar -->
+    <nav class="navbar navbar-light bg-light px-3 mb-2" *ngIf="!isloginOrRegisterPage">
+      <h3 class="navbar-brand mb-0">Angular Task Management</h3>
+      <div class="d-flex">
+         <!-- Team Management Button -->
+        <a
+        *ngIf="isSenior() && !isTeamManagementPage"
+        class="btn btn-primary me-3"
+        [routerLink]="'/team-management'"
+        >
+        Team Management
+        </a>
+
+        <!-- Dashboard Button -->
+        <a
+        *ngIf="isTeamManagementPage"
+        class="btn btn-secondary me-3"
+        [routerLink]="'/dashboard'"
+        >
+        Dashboard
+        </a>
+        <button class="btn btn-danger" (click)="logout()">Logout</button>
+      </div>
+    </nav>
+  
+    <!-- Main Content -->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

@@ -1,0 +1,78 @@
+<div class="dashboard-container">
+  <!--  -->
+  <!-- Main Container -->
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <!-- Left Container: Task List -->
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="text-center">My Task List</h5>
+          </div>
+          <div class="card-body">
+            <div class="action-row mb-3 d-flex justify-content-between">
+              <div class="search-container">
+                <label for="task-search" class="form-label me-2">Search:</label>
+                <input
+                  id="task-search"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="searchTerm"
+                  (ngModelChange)="filterTasks()"
+                />
+              </div>
+              
+            </div>
+            <table class="table table-striped table-md">
+              <thead>
+                <tr>
+                  <!-- <th>Id</th> -->
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let task of pageOfTasks; let idx = index">
+                  <!-- <td>{{ idx + 1 }}</td> -->
+                  <td>{{ task.title }}</td>
+                  <td>{{ task.description }}</td>
+                  <td>{{ task.status }}</td>
+                  <td>
+                    
+                    <i
+                      class="bi bi-trash-fill text-danger"
+                      (click)="deleteTask(task._id)"
+                    ></i>
+                  </td>
+                </tr>
+                <tr *ngIf="loading">
+                  <td colspan="5" class="text-center py-5">
+                    <span class="spinner-border spinner-border-lg"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <pagination [items]="tasks" (changePage)="onChangePage($event)"></pagination>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Container: Task Form -->
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h5>Create / Edit Task</h5>
+          </div>
+          <div class="card-body">
+            <app-task-form (taskCreated)="onTaskCreated($event)"></app-task-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
